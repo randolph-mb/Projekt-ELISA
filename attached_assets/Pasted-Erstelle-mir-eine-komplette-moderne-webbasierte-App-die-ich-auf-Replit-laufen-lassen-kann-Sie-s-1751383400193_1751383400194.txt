@@ -1,0 +1,82 @@
+Erstelle mir eine komplette, moderne, webbasierte App, die ich auf Replit laufen lassen kann.
+Sie soll mit der OpenAI GPT-4 API funktionieren und kein Fine-Tuning benötigen – nur starkes Prompt-Engineering.
+
+Ziel:
+
+Ich möchte eine gemeinsame Lernplattform für eine 15-jährige Schülerin (Elisa) und ihren Lehrer (Randolph) bauen. Beide nutzen dieselbe Plattform mit demselben Login-System, sehen die selben Informationen – aus derselben Oberfläche heraus.
+
+Funktionen:
+
+Login mit einfachem Passwort (für beide – Elisa und Randolph). Kein User-Management nötig, nur ein Textfeld und Login-Logik.
+
+Zentrale Oberfläche nach dem Login:
+
+Kalender-Übersicht mit Markierungen: Jeder Tag, an dem Elisa gearbeitet hat, wird visuell hervorgehoben.
+
+Klick auf einen Tag zeigt:
+
+Den KI-Dialog des Tages (z. B. „Ich habe passé composé geübt.“)
+
+Die Rückfragen der KI („Was genau? Wie lange? Was war schwer?“)
+
+Das automatisch erzeugte Briefing durch die KI: z. B. „Elisa hat 30 Minuten passé composé wiederholt, schien aber bei unregelmäßigen Verben noch unsicher.“
+
+Wenn Elisa einen Tag auslässt, erkennt die KI das und fragt sie am nächsten Login aktiv:
+
+„Hey Elisa, gestern warst du nicht da. Alles okay? Was hast du stattdessen gemacht? Wie holen wir das gemeinsam auf?“
+
+Ein Textfeld für Elisa, wo sie täglich angibt, was sie gemacht hat. Die KI beginnt dann den Dialog mit Rückfragen und verarbeitet alles zu einem strukturierten Briefing.
+
+Das Briefing erscheint öffentlich sichtbar auf der Plattform – als Scrollbereich oder Seitenpanel – für Elisa UND für Randolph.
+
+Designstil:
+
+Klar, modern, motivierend.
+
+Farbpalette inspiriert von Fußball (grün, weiß, evtl. blaugrau).
+
+Ideal für eine 15-jährige Schülerin: cool, aber nicht kindisch.
+
+Interface soll sich anfühlen wie ein digitales Tagebuch mit Persönlichkeit.
+
+Technik:
+
+Frontend mit HTML/CSS/JS (oder React, wenn möglich) und Tailwind CSS für Style.
+
+Backend mit Flask oder Express.js.
+
+Speichern der Daten in JSON-Dateien oder SQLite (auf Replit lauffähig).
+
+Integration der OpenAI GPT-4 API zur Dialogverarbeitung und Briefing-Erzeugung.
+
+KI wird über Prompt gesteuert – kein Fine-Tuning nötig.
+
+Besondere Anforderungen:
+
+Die KI hat den Namen LUMI. Sie spricht wie eine charmante, leicht neckende große Schwester. Sie ist motivierend, ehrlich, warm und klug.
+
+LUMI stellt Fragen, reflektiert mit Elisa, lobt, fordert manchmal freundlich heraus, ist aber nie kühl oder roboterhaft.
+
+Der Prompt an die GPT-API muss diesen Ton sichern. (Prompt bitte klar im Code mitliefern.)
+
+Es soll möglich sein, das Briefing später herunterzuladen oder zu exportieren.
+
+Deine Aufgabe:
+
+Erstelle den kompletten Projektcode, aufgeteilt in:
+
+Login-Seite mit Passwort
+
+Hauptseite mit Kalender, Textfeld, Dialoganzeige, Briefinganzeige
+
+GPT-4 API-Verbindung mit Promptstruktur für LUMI
+
+Datenspeicherung (lokal, JSON oder SQLite)
+
+Modernes, responsives CSS (Tailwind oder ähnlich)
+
+Setup-Anleitung für Replit (.env, API-Key, Startbefehl)
+
+Das Projekt soll direkt auf Replit lauffähig sein und keine externe Datenbank benötigen. Die Oberfläche soll sich lebendig und motivierend anfühlen – wie ein Sommer-Coach mit Herz.
+
+Liefere bitte den vollständigen Code + klare Anweisungen zur Einrichtung. Ich möchte sofort loslegen können.
