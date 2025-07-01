@@ -197,4 +197,4 @@ def export_briefings():
 if __name__ == '__main__':
     from database import init_db
     init_db() # Stellt sicher, dass die DB existiert
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=5000, debug=True)

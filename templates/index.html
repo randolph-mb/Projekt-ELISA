@@ -7,29 +7,81 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Custom Styles */
-        body { background-color: #e8f5e9; /* Sehr helles Grün */ }
-        .calendar-day { transition: all 0.2s ease-in-out; }
-        .calendar-day.active { background-color: #4caf50; color: white; border-radius: 50%; }
-        .calendar-day.today { font-weight: bold; border: 2px solid #2e7d32; border-radius: 50%; }
-        .calendar-day.selected { background-color: #2e7d32; color: white; border-radius: 50%; }
+        /* Custom Styles - Football inspired design */
+        body { 
+            background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e8 100%); 
+            min-height: 100vh;
+        }
+        .calendar-day { 
+            transition: all 0.3s ease-in-out; 
+            position: relative;
+        }
+        .calendar-day.active { 
+            background: linear-gradient(135deg, #4caf50, #66bb6a); 
+            color: white; 
+            border-radius: 50%; 
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+            transform: scale(1.1);
+        }
+        .calendar-day.today { 
+            font-weight: bold; 
+            border: 3px solid #2e7d32; 
+            border-radius: 50%; 
+            background-color: white;
+        }
+        .calendar-day.selected { 
+            background: linear-gradient(135deg, #1b5e20, #2e7d32); 
+            color: white; 
+            border-radius: 50%; 
+            box-shadow: 0 6px 12px rgba(46, 125, 50, 0.4);
+            transform: scale(1.15);
+        }
         #chat-window { scroll-behavior: smooth; }
-        .chat-bubble { max-width: 80%; }
-        .chat-bubble.user { background-color: #ffffff; align-self: flex-end; }
-        .chat-bubble.lumi { background-color: #a5d6a7; /* Weiches Grün */ align-self: flex-start; }
+        .chat-bubble { 
+            max-width: 80%; 
+            animation: slideIn 0.3s ease-out;
+        }
+        .chat-bubble.user { 
+            background: linear-gradient(135deg, #ffffff, #f8f9fa); 
+            align-self: flex-end; 
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chat-bubble.lumi { 
+            background: linear-gradient(135deg, #a5d6a7, #c8e6c9); 
+            align-self: flex-start; 
+            box-shadow: 0 2px 6px rgba(76, 175, 80, 0.2);
+        }
         .is-typing {
-            display: flex; align-items: center; padding: 10px 15px;
-            background-color: #a5d6a7; border-radius: 20px 20px 20px 5px;
+            display: flex; align-items: center; padding: 12px 18px;
+            background: linear-gradient(135deg, #a5d6a7, #c8e6c9); 
+            border-radius: 20px 20px 20px 5px;
+            box-shadow: 0 2px 6px rgba(76, 175, 80, 0.2);
         }
         .is-typing span {
-            height: 8px; width: 8px; float: left; margin: 0 1px;
-            background-color: #4a5568; display: block; border-radius: 50%; opacity: 0.4;
-            animation: 1s ball-beat infinite ease-in-out;
+            height: 8px; width: 8px; float: left; margin: 0 2px;
+            background-color: #2e7d32; display: block; border-radius: 50%; opacity: 0.4;
+            animation: 1.2s ball-beat infinite ease-in-out;
         }
-        .is-typing span:nth-of-type(2) { animation-delay: -0.2s; }
-        .is-typing span:nth-of-type(3) { animation-delay: -0.4s; }
+        .is-typing span:nth-of-type(2) { animation-delay: -0.3s; }
+        .is-typing span:nth-of-type(3) { animation-delay: -0.6s; }
         @keyframes ball-beat {
-            50% { opacity: 1; transform: scale(1.3); }
+            50% { opacity: 1; transform: scale(1.4); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .card-shadow {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-radius: 16px;
         }
     </style>
 </head>
@@ -37,14 +89,17 @@
     <div class="flex flex-col md:flex-row h-screen">
 
         <!-- Linke Spalte: Kalender & Chat -->
-        <main class="w-full md:w-2/3 lg:w-3/4 flex flex-col p-4 sm:p-6 bg-white shadow-lg z-10">
+        <main class="w-full md:w-2/3 lg:w-3/4 flex flex-col p-4 sm:p-6 bg-white card-shadow z-10">
             <!-- Header -->
-            <header class="flex justify-between items-center pb-4 border-b-2 border-gray-100">
+            <header class="gradient-header flex justify-between items-center">
                 <div>
-                    <h1 class="text-3xl font-bold text-green-800">Hallo Elisa!</h1>
-                    <p class="text-gray-500">Was hast du heute Starkes geleistet?</p>
+                    <h1 class="text-4xl font-bold">⚽ Hallo Elisa!</h1>
+                    <p class="text-green-100 text-lg">Was hast du heute Starkes geleistet?</p>
+                    <p class="text-green-200 text-sm mt-1">LUMI ist bereit für euer Training! 💪</p>
                 </div>
-                <a href="/logout" class="text-sm text-gray-500 hover:text-red-600 transition">Abmelden <i class="fas fa-sign-out-alt ml-1"></i></a>
+                <a href="/logout" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-full transition-all duration-300">
+                    Abmelden <i class="fas fa-sign-out-alt ml-1"></i>
+                </a>
             </header>
 
             <!-- Kalender -->
@@ -77,15 +132,23 @@
         </main>
 
         <!-- Rechte Spalte: Briefing Panel -->
-        <aside class="w-full md:w-1/3 lg:w-1/4 bg-gray-100 p-6 flex flex-col">
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-gray-700">LUMIs Briefings</h2>
-                 <a href="/api/export" title="Alle Briefings herunterladen" class="text-gray-500 hover:text-green-600"><i class="fas fa-download fa-lg"></i></a>
+        <aside class="w-full md:w-1/3 lg:w-1/4 bg-gradient-to-b from-gray-50 to-gray-100 p-6 flex flex-col">
+            <div class="bg-white rounded-lg p-4 mb-4 card-shadow">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-2xl font-bold text-gray-800">📋 LUMIs Briefings</h2>
+                    <a href="/api/export" title="Alle Briefings herunterladen" 
+                       class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition-all duration-300 transform hover:scale-110">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+                <p class="text-sm text-gray-600">🤝 Für dich & Randolph</p>
             </div>
-            <p class="text-sm text-gray-500 mb-4">Für dich & Randolph</p>
-            <div id="briefing-panel" class="flex-grow bg-white rounded-lg shadow-inner p-4 overflow-y-auto">
+            <div id="briefing-panel" class="flex-grow bg-white rounded-lg card-shadow p-6 overflow-y-auto">
                 <div id="briefing-content" class="prose prose-sm max-w-none">
-                    <p class="text-gray-400">Wähle einen markierten Tag im Kalender oder starte einen neuen Eintrag, um das Briefing hier zu sehen.</p>
+                    <p class="text-gray-400 text-center">
+                        <i class="fas fa-lightbulb text-yellow-400 text-2xl mb-2 block"></i>
+                        Wähle einen markierten Tag im Kalender oder starte einen neuen Eintrag, um das Briefing hier zu sehen.
+                    </p>
                 </div>
             </div>
         </aside>

@@ -7,15 +7,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #f0f4f8; /* Blaugrau */
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 50%, #e0f2f1 100%);
+        }
+        .login-card {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
-    <div class="w-full max-w-sm p-8 space-y-6 bg-white rounded-xl shadow-lg">
+    <div class="w-full max-w-sm p-8 space-y-6 bg-white login-card">
         <div class="text-center">
-            <h1 class="text-4xl font-bold text-gray-800">LUMI</h1>
-            <p class="text-gray-500">Dein persönlicher Lern-Coach</p>
+            <h1 class="text-5xl font-bold gradient-text mb-2">⚽ LUMI</h1>
+            <p class="text-gray-600 text-lg">Dein persönlicher Lern-Coach</p>
+            <p class="text-green-600 text-sm mt-1">Bereit für das Training? 💪</p>
         </div>
 
         <form method="POST" class="space-y-6">

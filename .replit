@@ -15,5 +15,17 @@ run = ["python3", "main.py"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
-localPort = 8080
+localPort = 5000
 externalPort = 80
+
+[workflows]
+runButton = "LUMI App"
+
+[[workflows.workflow]]
+name = "LUMI App"
+author = 41368833
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 main.py"
