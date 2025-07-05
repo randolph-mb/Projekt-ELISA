@@ -89,7 +89,6 @@
     <div class="flex flex-col md:flex-row h-screen">
 
         <!-- Linke Spalte: Container für Kalender & Chat -->
-        <!-- WICHTIG: Die `main`-Sektion ist nun ein Flex-Container, der die volle Höhe ausnutzt -->
         <main class="w-full md:w-2/3 lg:w-3/4 flex flex-col p-4 sm:p-6 bg-white card-shadow z-10">
             <!-- Header bleibt wie er war -->
             <header class="gradient-header flex justify-between items-center">
@@ -103,35 +102,39 @@
                 </a>
             </header>
 
-            <!-- NEUE STRUKTUR: Ein Flex-Container, der den verbleibenden Platz füllt -->
-            <!-- Auf Handys (flex-col) werden Kalender & Chat untereinander gestapelt. -->
-            <!-- Ab dem lg-Breakpoint (lg:flex-row) stehen sie nebeneinander. -->
-            <!-- min-h-0 ist ein Flexbox-Trick, der sicherstellt, dass die Kinder korrekt schrumpfen und scrollen können. -->
             <div class="flex-grow flex flex-col lg:flex-row gap-6 min-h-0">
 
                 <!-- Kalender-Wrapper: Nimmt auf großen Bildschirmen eine feste Breite ein -->
-                <div class="lg:w-2/5 lg:max-w-md flex flex-col">
-                    <div id="calendar-container" class="bg-gray-50 p-4 rounded-lg">
-                        <div class="flex justify-between items-center mb-2">
-                            <button id="prev-month" class="p-2 rounded-full hover:bg-gray-200"><i class="fas fa-chevron-left"></i></button>
-                            <h2 id="month-year" class="text-xl font-semibold"></h2>
-                            <button id="next-month" class="p-2 rounded-full hover:bg-gray-200"><i class="fas fa-chevron-right"></i></button>
+                    <!-- NEUER, ROBUSTER TEST-CODE -->
+                    <div class="lg:w-2/5 lg:max-w-md flex flex-col gap-4">
+                        <!-- Kalender-Container -->
+                        <div id="calendar-container" class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <button id="prev-month" class="p-2 rounded-full hover:bg-gray-200"><i class="fas fa-chevron-left"></i></button>
+                                <h2 id="month-year" class="text-xl font-semibold"></h2>
+                                <button id="next-month" class="p-2 rounded-full hover:bg-gray-200"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center"></div>
                         </div>
-                        <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center"></div>
+
+                        <!-- Bild-Container mit Brute-Force-Styling -->
+                        <div style="flex-grow: 1; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+                            <img src="{{ url_for('static', filename='emminem.png') }}" alt="Motivation" 
+                                 style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                        </div>
+
                     </div>
-                </div>
+                    
+                
 
                 <!-- Chat-Wrapper: Nimmt den Rest des Platzes ein (flex-grow) -->
-                <!-- Dieser Container hat nun die maximale Höhe, was das Chatfenster groß macht. -->
                 <div class="flex-grow flex flex-col min-h-0">
-                    <!-- Das eigentliche Chat-Fenster, das jetzt viel mehr Platz zum Wachsen hat. -->
                     <div id="chat-window" class="flex-grow space-y-4 overflow-y-auto pr-2 bg-gray-50 rounded-t-lg p-4">
                         <!-- Nachrichten werden hier via JS eingefügt -->
                     </div>
                     <div id="typing-indicator" class="p-4 bg-gray-50" style="display: none;">
                         <div class="is-typing"><span></span><span></span><span></span></div>
                     </div>
-                    <!-- Das Eingabeformular bleibt am unteren Rand des großen Chat-Bereichs -->
                     <form id="chat-form" class="flex gap-3 p-4 bg-gray-100 rounded-b-lg">
                         <input type="text" id="chat-input" placeholder="Erzähl LUMI, was du heute gelernt hast..."
                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -141,7 +144,6 @@
                         </button>
                     </form>
                 </div>
-
             </div>
         </main>
 
